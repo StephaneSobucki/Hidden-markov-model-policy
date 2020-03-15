@@ -1,9 +1,9 @@
 function AffichePolitique(Politique,Plan,Map_plan2node)
 
 % Inputs :
-% - Politique     : vecteur contenant l'action associée à chaque case de la grille
-% - Plan          : matrice définie dans TP3.m
-% - Map_plan2node : matrice de correspondance entre numéro de case et position de la case dans la grille
+% - Politique     : vecteur contenant l'action associee a chaque case de la grille
+% - Plan          : matrice definie dans TP3.m
+% - Map_plan2node : matrice de correspondance entre numero de case et position de la case dans la grille
 
 figure(3),imagesc(Plan), colormap gray, colorbar, axis square, grid on,
 for i = 1:length(Politique(:))

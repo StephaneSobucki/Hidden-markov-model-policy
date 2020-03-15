@@ -1,5 +1,4 @@
 clear all, close all, clc,
-
 %% Creation du scenario
 
 % dimensions de la grille
@@ -17,30 +16,30 @@ Map_plan2node = reshape((1:nbr),RowMax,ColMax);
 Plan(2,2) = -1;
 
 % affichage de la grille
-figure(1), imagesc(Plan), colormap gray, colorbar, axis square, grid on, title('Sc�ne');
+figure, imagesc(Plan), colormap gray, colorbar, axis square, grid on, title('Scene');
 
 
-%% D�finition des r�compenses
+%% Definition des recompenses
 
 R = -0.04*ones(RowMax,ColMax); % cases standards
 R(1,4) = 1; % case objectif
-R(2,4) = -1; % cas � �viter
+R(2,4) = -1; % cas a eviter
 
-% affichage des r�compenses
-AfficheRecompences(R,Map_plan2node);
+% affichage des recompenses
+AfficheRecompenses(R,Map_plan2node);
 
 
-%% D�finition de la fonction de transition d'�tat
+%% Definition de la fonction de transition d'etat
 
-% d�finition des actions possible
+% definition des actions possible
 N = 1; W = 2; S = 3; E = 4;
 A = [N,W,S,E];
 
-% probabilit� de r�sultat � chaque action
+% probabilite de resultat a chaque action
 forward = 0.8; right = 0.1 ; left = 0.1; back = 0;
 
-% fonction de transition d'�tat
-T = zeros(nbr,length(A),nbr); % T(s,a,s') initilis�e � 0
+% fonction de transition d'etat
+T = zeros(nbr,length(A),nbr); % T(s,a,s') initilisee a 0
 voisins_cons = cell(12,1);
 
 for i=1:nbr % for chaque case
@@ -64,7 +63,7 @@ for i=1:nbr % for chaque case
             colDroite = 0; % pas de voisin � droite
         end
         
-        % d�termination des num�ros des voisins
+        % determination des numeros des voisins
         Voisins(1) = Map_plan2node(RowPos+ligneHaut,ColPos); % N
         Voisins(2) = Map_plan2node(RowPos,ColPos+colGauche); % W
         Voisins(3) = Map_plan2node(RowPos+ligneBas,ColPos);  % S
@@ -76,7 +75,7 @@ for i=1:nbr % for chaque case
         
         voisins_cons{i} = [Voisins(1),Voisins(2),Voisins(3),Voisins(4)];
         
-        % probabilit�s des r�sultats des actions
+        % probabilites des resultats des actions
         % action : N
         T(i,A(1),Voisins(1)) = T(i,A(1),Voisins(1))+forward;
         T(i,A(1),Voisins(2)) = T(i,A(1),Voisins(2))+left;

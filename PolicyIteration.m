@@ -1,3 +1,4 @@
+run("CreateScenario.m");
 %% Par iteration de politique
 %On commence par une politique initialisee au hasard. On calcule les
 %utilites associees a la politique, puis on calcule une nouvelle politique,
@@ -73,5 +74,6 @@ while changed
     %AffichePolitique(Politique,Plan,Map_plan2node), title(['Politique temporaire : iteration',num2str(counter)]), pause();
 end
 toc;
+AfficheUtilites(reshape(U(:,end),RowMax,ColMax),Map_plan2node,counter)
 AffichePolitique(Politique,Plan,Map_plan2node), title(['Politique finale : iteration',num2str(counter)]);
                 

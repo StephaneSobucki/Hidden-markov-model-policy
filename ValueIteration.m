@@ -1,9 +1,9 @@
-close all;
+run("CreateScenario.m");
 %% Par iteration de valeur
 %On initialise les utilites de chaque etat avec leurs recompenses
 %associees. Puis, on calcule les nouvelles utilites a chaque etat afin de
 %maximiser les recompenses. On itere jusqu'a la convergence,
-%c'est-à-dire jusqu'a ce que les utilites ne changent plus. Ensuite, on
+%c'est-a-dire jusqu'a ce que les utilites ne changent plus. Ensuite, on
 %calcule la politique associee.
 
 % cases dont les utilitees sont fixes durant l'algorithme
@@ -18,7 +18,7 @@ AfficheUtilites(reshape(U(:,end),RowMax,ColMax),Map_plan2node,0);pause();
 % valeur d'escompte
 escompte = 1;
 
-%nombre d'états
+%nombre d'etats 
 nbr_states = 12;
 
 tic;
@@ -34,7 +34,7 @@ while true
                 somme = 0;
                 neighbours = find(T(s,A(a),:) > 0);%Tableau avec les indices des voisins de s
                 for n = 1:length(neighbours)
-                    somme = somme +U(neighbours(n),end-1)*T(s,A(a),neighbours(n));%Correspond à la somme T(s,a,s')*U(s') que l'on cherche à maximiser
+                    somme = somme +U(neighbours(n),end-1)*T(s,A(a),neighbours(n));%Correspond a la somme T(s,a,s')*U(s') que l'on cherche ï¿½ maximiser
                 end
                 if(somme > argmax)
                     argmax = somme;
